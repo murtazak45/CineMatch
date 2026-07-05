@@ -6,6 +6,11 @@ import pandas as pd
 from sklearn.metrics.pairwise import cosine_similarity
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
+import os
+from dotenv import load_dotenv
+
+load_dotenv()  # reads .env file and loads variables into environment
+TMDB_API_KEY = os.getenv("TMDB_API_KEY")
 
 # ============================================================
 # PAGE CONFIG (must be first Streamlit call)
@@ -23,7 +28,6 @@ st.set_page_config(
 tfidf_matrix = scipy.sparse.load_npz('tfidf_matrix.npz')
 movies = pickle.load(open('movies3.pkl', 'rb'))
 
-TMDB_API_KEY = "0655ab72327a2003d88e361e5433bcf2"  # replace with your key
 
 # ============================================================
 # NETWORK SESSION WITH RETRIES
